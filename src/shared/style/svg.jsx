@@ -8,7 +8,10 @@ import { COLORS } from '../constants';
 const SVG = (props, { localContext }) => {
   const Style = styled.div`
     svg g {
-      fill: ${ props.color };
+      stroke: ${ props.stroke };
+    }
+    svg rect {
+      fill: ${ props.fill };
     }
   `;
   const svgData = {
@@ -16,7 +19,7 @@ const SVG = (props, { localContext }) => {
   };
   return (
     <Style
-      className={ props.className }
+      className={ props.className || ''}
       dangerouslySetInnerHTML={ svgData }
     />
   );

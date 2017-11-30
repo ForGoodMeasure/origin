@@ -1,12 +1,15 @@
 import { injectGlobal } from 'styled-components';
 import styledNormalize from 'styled-normalize';
 
-export default () => injectGlobal`
+import { COLORS } from './constants';
+
+export default localContext => injectGlobal`
   ${ styledNormalize };
 
   body {
     font-size: 18px;
-    font-family: sans-serif;
+    font-family: 'Circular-Std', sans-serif;
+    background: ${ COLORS.BLUE };
   }
 
   body * {
@@ -92,17 +95,21 @@ export default () => injectGlobal`
     line-height: 1.4em;
     margin-top: 0.1em;
     line-height: 1.2em;
+    + p {
+      margin-top: 1em;
+    }
   }
   h1 {
     font-size: 3em;
     font-weight: 500;
   }
   h2 {
-    font-size: 2.6em;
-    font-weight: 500;
+    font-size: 2.2em;
+    font-weight: 600;
   }
   h3 {
-    font-size: 2em;
+    font-size: 1.8em;
+    font-weight: 600;
   }
   h4 {
     font-size: 1.8em;
@@ -113,12 +120,12 @@ export default () => injectGlobal`
     line-height: 1.3em;
   }
   p {
-    font-size: 1.4em;
-    margin: 1.167em 0;
-    line-height: 1.4em;
+    font-size: 1.2em;
+    line-height: 1.3em;
+    margin-bottom: 1em;
   }
   div {
-    line-height: 1.4em;
+    line-height: 1.3em;
   }
 
   .clearfix:after {
@@ -127,4 +134,10 @@ export default () => injectGlobal`
     clear: both;
   }
 
+  .hoverable {
+    transition: transform 200ms;
+    &:hover {
+      transform: scale(1.05, 1.05);
+    }
+  }
 `;

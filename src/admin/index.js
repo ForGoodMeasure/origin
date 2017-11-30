@@ -6,11 +6,11 @@ import styled from 'styled-components';
 import request from 'superagent';
 import PropTypes from 'prop-types';
 
-import contentSchema from '../../content/content-schema.json';
 import getLocalContext from '../../lib/get-local-context';
 import withLocalContext from '../../lib/with-local-context';
-
 import { tryParse } from '../../lib/admin-page-bridge';
+
+import contentSchema from '../assets/content/content-schema.json';
 
 const EditorContainer = styled.div`
   width: 40%;

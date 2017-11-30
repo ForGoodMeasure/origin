@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { localContextType } from '../util';
+
 const Style = styled.div`
   a {
     display: block;
@@ -14,16 +16,20 @@ const Style = styled.div`
   }
 `;
 
-export default props => {
+const App = (props, {localContext}) => {
   return (
     <Style>
       <h2>Demo App</h2>
-      <Link to="/">Home</Link>
-      <Link to="/page-1">Page1</Link>
-      <Link to="/page-2">Page2</Link>
+      <Link to={ localContext.resourceUrl("/") }>Home</Link>
+      <Link to={ localContext.resourceUrl("/page-1") }>Page1</Link>
+      <Link to={ localContext.resourceUrl("/page-2") }>Page2</Link>
       <div className="content">
         { props.params.string }
       </div>
     </Style>
   );
 }
+
+App.contextTypes = localContextType;
+
+export default App;

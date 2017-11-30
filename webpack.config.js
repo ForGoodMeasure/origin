@@ -11,7 +11,7 @@ const serverConfig = {
   },
   output: {
     filename: '[name]-bundle.js',
-    path: path.resolve(__dirname, 'dist/lambda'),
+    path: path.resolve(__dirname, 'dist/server'),
     library: 'handler',
     libraryTarget: 'commonjs2'
   },
@@ -44,7 +44,7 @@ const browserConfig = {
   entry: './src/browser/index.js',
   output: {
     filename: 'browser-bundle.js',
-    path: path.resolve(__dirname, 'dist/static/assets')
+    path: path.resolve(__dirname, 'dist/assets/js')
   },
   resolve: {
     extensions: ['.js', '.jsx']
@@ -75,13 +75,10 @@ const adminAppConfig = {
   entry: './src/admin/index.js',
   output: {
     filename: 'admin-bundle.js',
-    path: path.resolve(__dirname, 'dist/static/assets')
+    path: path.resolve(__dirname, 'dist/assets/js')
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
-    alias: {
-      Stylesheets: path.resolve(__dirname, './src/stylesheets')
-    }
+    extensions: ['.js', '.jsx']
   },
   module: {
     loaders: [

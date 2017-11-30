@@ -1,0 +1,31 @@
+{
+  "global": {
+    "aws_profile": "fgm-dev",
+    "aws_s3_bucket": "origin-app-test",
+    "aws_region": "us-east-1",
+    "favicon_url": "",
+    "ga_id": "",
+    "port": 3000
+  },
+  "stage": {
+    "prod": {
+      "resourceBase": "",
+      "assetBase": ""
+    },
+    "dev": {
+      "resourceBase": "",
+      "assetBase": ""
+    },
+    "static": {
+      "resourceBase": "",
+      "assetBase": ""
+    },
+    "lambda": {
+      "resourceBase": "https://u1bqkliysc.execute-api.us-east-1.amazonaws.com/dev",
+      "assetBase": "https://s3.amazonaws.com/origin-app-test"
+    }
+  },
+  "staticRouteConfig": {
+    "routes": []
+  }
+}

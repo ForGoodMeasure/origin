@@ -1,0 +1,56 @@
+#!/usr/bin/env node
+
+const async = require('async');
+const fs = require('fs');
+const aws = require('aws-sdk');
+const spawn = require('child_process').spawn;
+const exec = require('child_process').exec;
+const execSync = require('child_process').execSync;
+const config = require('./config.json');
+
+const VARS = {
+  AWS_PROFILE: config.global.aws_profile,
+  AWS_REGION: config.global.region,
+  PATH: process.env.PATH
+};
+const S3_BUCKET = config.global.aws_s3_bucket;
+const STATIC_ROUTES = config.staticRouteConfig.routes;
+const PORT = config.global.port;
+
+function run(command, cb) {
+  const child = exec(command, {
+    env: VARS
+  }, cb);
+  child.stdout.on('data', data => console.log(data));
+  child.stderr.on('data', data => console.error(data));
+}
+
+function uploadAssets() {
+  run(`aws s3 cp --recursive ./dist/assets s3://${ S3_BUCKET } --acl public-read`);
+}
+
+function clean() {
+  run("rm -rf dist/* && mkdir dist/assets dist/server && cp -r src/assets dist");
+}
+
+function cloneContent() {
+  run(`aws s3 cp s3://${ S3_BUCKET }/content/content.json ./src/content/content.json`);
+}
+
+function test() {
+  downloadRoute('/');
+}
+
+(function execute() {
+  const functionName = process.argv[2];
+
+  try {
+    const result = eval(`${functionName}()`);
+    if (result) {
+      console.log(String(result));
+    }
+  } catch (e) {
+    console.log('An Error Occurred.');
+    console.log(e);
+  }
+})();

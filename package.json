@@ -5,16 +5,11 @@
   "main": "app.js",
   "author": "Colton Brown <colton@coltonbrown.co> (http://coltonbrown.co/)",
   "license": "ISC",
-  "config": {
-    "s3BucketName": "better-angels-web",
-    "lambdaRegion": "",
-    "lambdaFunctionName": ""
-  },
   "dependencies": {
     "async": "^2.5.0",
     "aws-sdk": "^2.141.0",
     "aws-serverless-express": "^2.1.3",
-    "axios": "^0.17.0",
+    "axios": "^0.17.1",
     "babel-cli": "^6.23.0",
     "babel-core": "^6.23.1",
     "babel-eslint": "^7.1.1",
@@ -55,23 +50,17 @@
     "scroll": "^2.0.0",
     "scroll-doc": "^0.1.3",
     "serialize-javascript": "^1.4.0",
+    "serverless": "^1.24.1",
     "stringy": "^0.1.0",
     "stripe": "^5.2.0",
     "styled-components": "^2.2.1",
     "styled-normalize": "^2.2.1",
-    "superagent": "^3.8.0",
     "svg-inline-loader": "^0.8.0",
     "webpack": "^2.2.1"
   },
   "scripts": {
-    "clone-content": "aws s3 cp s3://$npm_package_config_s3BucketName/content/content.json ./content/content.json",
-    "clean": "rm -rf dist/* && mkdir dist/static dist/lambda dist/static-pages && cp -r src/images dist/static",
-    "build-server": "webpack",
-    "deploy-lambda": "serverless deploy -f hello",
-    "upload-assets": "aws s3 cp --recursive ./dist/static s3://$npm_package_config_s3BucketName --acl public-read",
-    "upload-content": "aws s3 cp --recursive ./content s3://$npm_package_config_s3BucketName/content --acl public-read",
-    "deploy": "npm run clean && npm run build-server && npm run deploy-lambda && npm run upload-assets && npm run upload-content",
-    "local": "nodemon -w ./dist",
-    "watch": "npm run build-server -- --watch"
+    "build": "webpack",
+    "deploy": "./scripts clean && webpack && ./scripts uploadAssets && serverless deploy",
+    "local": "nodemon -w ./dist"
   }
 }
