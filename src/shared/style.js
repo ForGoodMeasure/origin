@@ -8,10 +8,9 @@ export default localContext => injectGlobal`
 
   body {
     font-size: 18px;
-    font-family: 'Circular-Std', sans-serif;
-    background: ${ COLORS.BLUE };
+    font-family: 'Styrene', sans-serif;
+    cursor: none;
   }
-
   body * {
     margin: 0;
   }
@@ -102,6 +101,9 @@ export default localContext => injectGlobal`
   h1 {
     font-size: 3em;
     font-weight: 500;
+    color: transparent;
+    -webkit-text-stroke-width: 0.02em;
+    -webkit-text-stroke-color: inherit;
   }
   h2 {
     font-size: 2.2em;

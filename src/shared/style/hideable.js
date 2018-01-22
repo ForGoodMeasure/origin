@@ -129,4 +129,4 @@ class Hideable extends React.Component {
 Hideable.propTypes = propTypes;
 Hideable.defaultProps = defaultProps;
 
-export default { Hideable };
+export default Hideable;

@@ -12,5 +12,7 @@ export const scrollToTop = () => {
 }
 
 export const scrollTo = offset => {
-  scroll.top(page, offset)
+  scroll.top(page, offset, (err, scrollTop) => {
+    console.log(err, scrollTop);
+  })
 }
