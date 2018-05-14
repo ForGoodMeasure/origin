@@ -1,11 +1,12 @@
 {
   "global": {
     "aws_profile": "fgm-dev",
-    "aws_s3_bucket": "origin-app-test",
+    "aws_s3_bucket": "ooo-travel-com",
     "aws_region": "us-east-1",
     "favicon_url": "",
     "ga_id": "",
-    "port": 3000
+    "port": 3002,
+    "app_id": "ooo-travel"
   },
   "stage": {
     "prod": {
